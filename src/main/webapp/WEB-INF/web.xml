@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app >
+
+	
+	<display-name>HPlusSample</display-name>
+
+	<welcome-list-file>
+		<welcome-file>index.jsp</welcome-file>
+	
+	</welcome-list-file>
+	
+	<servlet>
+		<servlet-name>GetServlet</servlet-name>
+		<servlet-class>com.products.servlets.GetServlet</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>GetServlet</servlet-name>
+		<url-pattern>/myServlet</url-pattern>
+	</servlet-mapping>
+
+</web-app>

@@ -5,7 +5,7 @@
 	<display-name>HPlusSample</display-name>
 
 	<welcome-list-file>
-		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
 	
 	</welcome-list-file>
 	

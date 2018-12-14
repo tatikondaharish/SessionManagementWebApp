@@ -16,6 +16,7 @@ public class GetServlet extends HttpServlet {
 
 	protected void doGet (HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String response = "Welcome to Page";
-		resp.getWriter().println(response);
+		String name = req.getParameter("user");
+		resp.getWriter().println(response+" "+name);
 	}
 }

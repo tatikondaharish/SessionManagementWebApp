@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="com.test.beans.Product"%>
+<%@page import="com.products.Bean.Product"%>
 <%@page import="java.util.List" buffer="8kb" isELIgnored="false"
 	session="true" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1" isThreadSafe="true" isErrorPage="false"
@@ -83,7 +83,7 @@
 			<form method="get" action="products">
 
 				<div class="productContainerItem">
-					<img id="pic3" src="<%=product.getProductImgPath()%>"> <input
+					<img id="pic3" src="<%=product.getProductImagePath()%>"> <input
 						type="text" name="product" value="<%=product.getProductName()%>"><br />
 					<button>Add to Cart</button>
 				</div>

@@ -8,11 +8,13 @@ import org.hibernate.Session;
 import org.hibernate.cfg.Configuration;
 
 import com.products.Bean.Product;
+import com.products.Bean.User;
 
 
 public class SessionCreater {
 
-	static SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Product.class).buildSessionFactory();
+	static SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Product.class)
+			.addAnnotatedClass(User.class).buildSessionFactory();
 	static ThreadLocal<Session> sessionThread = new ThreadLocal<Session>();
 	
 	public static void buildSession() {

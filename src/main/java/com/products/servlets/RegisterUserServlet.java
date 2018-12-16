@@ -48,32 +48,10 @@ public class RegisterUserServlet extends HttpServlet {
 		}
 
 		// write the message back to the page in client browser\
-		String page = getHTMLString(req.getServletContext().getRealPath("/html/register.html"), infoMessage);
-		resp.getWriter().write(page);
 
-	}
+		req.getRequestDispatcher("/html/register.jsp").forward(req, resp);
+	
 
-	public String getHTMLString(String filePath, String message) throws IOException {
-		BufferedReader reader = new BufferedReader(new FileReader(filePath));
-		String line = "";
-		StringBuffer buffer = new StringBuffer();
-		while ((line = reader.readLine()) != null) {
-			buffer.append(line);
-		}
-
-		reader.close();
-		String page = buffer.toString();
-
-		page = MessageFormat.format(page, message);
-
-		return page;
-
-	}
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String page = getHTMLString(req.getServletContext().getRealPath("/html/register.html"), "");
-		resp.getWriter().write(page);
 	}
 
 }

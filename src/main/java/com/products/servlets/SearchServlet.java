@@ -15,28 +15,27 @@ import javax.servlet.http.HttpServletResponse;
 import com.products.Bean.Product;
 import com.products.dao.ApplicationDao;
 
+
+
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		//collect search string from the form
 		String searchString = req.getParameter("search");
 		
-		
+		req.getSession().setAttribute("search", searchString);
 		//call DAO layer and get all products for search criteria
 		ApplicationDao dao = new ApplicationDao();
 		List<Product> products = dao.searchProducts(searchString);
 		
 		//write the products data back to the client browser
-		String page = getHTMLString(req.getServletContext().getRealPath("/html/searchResults.html"), products);
-		resp.getWriter().write(page);
+		/*String page = getHTMLString(req.getServletContext().getRealPath("/html/searchResults.html"), products);
+		resp.getWriter().write(page);*/
+		req.setAttribute("products", products);
+		req.getRequestDispatcher("/html/searchResults.jsp").forward(req, resp);
 		
 		
 	}

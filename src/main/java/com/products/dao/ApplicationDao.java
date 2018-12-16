@@ -13,7 +13,6 @@ import com.products.Utilities.SessionCreater;
 public class ApplicationDao {
 	public List<Product> searchProducts(String searchString) {
 
-		Product product = null;
 		List<Product> products = new ArrayList<>();
 		Session session = SessionCreater.getSession();
 		session.beginTransaction();

@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.products.dao.ApplicationDao;
+
+
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet{
 	
@@ -29,16 +32,34 @@ public class LoginServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//get the username from the login form
 		String username = req.getParameter("username");
+		String password = req.getParameter("password");
 		
-		//set up the HTTP session
-		HttpSession session = req.getSession();
+		//call DAO for validation logic
+		ApplicationDao dao= new ApplicationDao();
+		boolean isValidUser = dao.validateUser(username, password);
 		
-		//set the username as an attribute
-		session.setAttribute("username", username);
+		//check if user is invalid and set up an error message
+		if(isValidUser){
+			//set up the HTTP session
+			HttpSession session = req.getSession();
+			
+			//set the username as an attribute
+			session.setAttribute("username", username);
+			//forward to home jsp
+			req.getRequestDispatcher("/html/home.jsp").forward(req, resp);
+		}
+		else{
+			String errorMessage="Invalid Credentials, please login again!";
+			req.setAttribute("error", errorMessage);
+			req.getRequestDispatcher("/html/login.jsp").forward(req, resp);
+			
+			
+		}
 		
 		
-		//forward to home jsp
-		req.getRequestDispatcher("/html/home.jsp").forward(req, resp);
+		
+		
+		
 	}
 
 }

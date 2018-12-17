@@ -36,12 +36,18 @@
 
 
 	<section>
-	<!-- displays date and time for today --> 
-	<%=displayDate() %>
+		<!-- displays date and time for today -->
+		<%=displayDate()%>
 	</section>
 	<section id="login" class="section">
 		<div class="container tagline">
-
+			<%
+				if (request.getAttribute("error") != null) {
+			%>
+			<%=request.getAttribute("error")%><br />
+			<%
+				}
+			%>
 			<em>LOGIN USER</em>
 			<form action="login" method="post">
 				<label>Username</label> <input type="text" name="username"
@@ -79,13 +85,10 @@
 		<!-- container -->
 	</footer>
 	<!-- footer -->
-	<%!
-	public String displayDate(){
+	<%!public String displayDate() {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd hh:mm");
 		Date date = Calendar.getInstance().getTime();
 		return dateFormat.format(date);
-	}
-	
-	%>
+	}%>
 </body>
 </html>

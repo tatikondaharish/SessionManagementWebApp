@@ -45,5 +45,29 @@ public class ApplicationDao {
 		}
 
 	}
+	
+
+	public boolean validateUser(String username, String password){
+		boolean isValidUser=false;
+		try {
+			Session session = SessionCreater.getSession();
+			session.beginTransaction();
+
+	
+		// write the select query
+			String sql = "select * from users where username=? and password=?";
+		
+		// execute the statement and check whether user exists
+			
+			List list = (List) session.createNativeQuery(sql);
+			while(list!=null){
+				isValidUser= true;
+			}
+		}
+		catch(Exception exception){
+			exception.printStackTrace();
+		}
+		return isValidUser;
+	}
 
 }
